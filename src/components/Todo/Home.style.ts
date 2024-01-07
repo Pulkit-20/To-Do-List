@@ -1,7 +1,9 @@
 import { IProcessedStyleSet, IStyle, mergeStyleSets } from "@fluentui/react";
 
 interface IHomeStyle {
-    todoContainer : IStyle
+    todoContainer : IStyle;
+    headerStyle : IStyle;
+    pivotRoot: IStyle;
 }
 
 const HomeStyle: IProcessedStyleSet<IHomeStyle> = mergeStyleSets({
@@ -12,7 +14,19 @@ const HomeStyle: IProcessedStyleSet<IHomeStyle> = mergeStyleSets({
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        boxShadow: "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
+        boxShadow: "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset"
+    },
+    headerStyle : {
+        height: 80,
+        backgroundColor: "cadetblue",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "white"
+    },
+    pivotRoot: {
+        display: "flex",
+        justifyContent: "center"
     }
 })
 
