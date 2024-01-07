@@ -4,6 +4,7 @@ interface IHomeStyle {
     todoContainer : IStyle;
     headerStyle : IStyle;
     pivotRoot: IStyle;
+    lineIsSelected: IStyle;
 }
 
 const HomeStyle: IProcessedStyleSet<IHomeStyle> = mergeStyleSets({
@@ -27,6 +28,9 @@ const HomeStyle: IProcessedStyleSet<IHomeStyle> = mergeStyleSets({
     pivotRoot: {
         display: "flex",
         justifyContent: "center"
+    },
+    lineIsSelected: {
+        color: "cadetBlue"
     }
 })
 

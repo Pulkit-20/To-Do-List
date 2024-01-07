@@ -25,6 +25,7 @@ const Home = () => {
             onLinkClick={(item?: PivotItem) =>{
                 setSelectedKey(item?.props.itemKey || PivotKeysEnum.Tasks) //state asks for string so default value as tasks
             }}
+            className={HomeStyle.lineIsSelected}
             >
         <PivotItem headerText={TodoString.pivots.tasksTab} itemKey={PivotKeysEnum.Tasks}> 
           <Label>Pivot #1</Label>
