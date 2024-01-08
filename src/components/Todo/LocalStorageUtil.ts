@@ -1,9 +1,11 @@
-export const getTasksFromLocalStorage = () => {
+export interface ITask {
+    id: string;
+    title: string;
+}
+export const getTasksFromLocalStorage = (): ITask[] => {
     const storedTasks = localStorage.getItem("tasks");
     return storedTasks ? JSON.parse(storedTasks) : [];
 };
-export const saveTasksToLocalStorage = (task: any) => {
-    const storedTasks = getTasksFromLocalStorage();
-    const updatedTasks = [...storedTasks, task];
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+export const saveTasksToLocalStorage = (tasks: ITask[]): void => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
