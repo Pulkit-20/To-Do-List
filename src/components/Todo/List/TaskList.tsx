@@ -6,17 +6,10 @@ interface ITask {
   id: string;
   title: string;
 }
-const TaskList = () => {
-  const tasks: ITask[] = [
-    {
-      id: "1",
-      title: "Task 1",
-    },
-    {
-      id: "2",
-      title: "Task 2",
-    },
-  ];
+interface TaskListProps {
+  tasks: ITask[];
+}
+const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
   const onRenderCell = (task: ITask) => {
     return (
       <Stack horizontal key={task.id} className={TaskListStyle.taskItem}>

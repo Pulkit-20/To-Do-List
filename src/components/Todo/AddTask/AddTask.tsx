@@ -6,6 +6,7 @@ import {
   TextField,
 } from "@fluentui/react";
 import React, { useState } from "react";
+import { saveTasksFromLocalStorage } from "../LocalStorageUtil";
 
 const AddTask = () => {
     const [title, setTitle] = useState("");
@@ -19,6 +20,9 @@ const AddTask = () => {
             setTitle("");
             setDescription("");
             setShowSuccessMessage(true);
+
+            //Saving to Local Storage
+            saveTasksFromLocalStorage({ title, description });
 
             setTimeout(() => {
                 setShowSuccessMessage(false);
