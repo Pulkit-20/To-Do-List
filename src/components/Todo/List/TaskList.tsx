@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TaskListStyle from "./TaskList.style";
 import { Checkbox, FontIcon, Stack, mergeStyles } from "@fluentui/react";
+import { getTasksFromLocalStorage } from "../LocalStorageUtil";
 
-interface ITask {
-  id: string;
-  title: string;
-}
-interface TaskListProps {
-  tasks: ITask[];
-}
-const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
-  const onRenderCell = (task: ITask) => {
+// interface ITask {
+//   id: string;
+//   title: string;
+// }
+// interface TaskListProps {
+//   tasks: ITask[];
+// }
+const TaskList = () => {
+  const [tasks, setTasks] = useState([]);
+  useEffect( () =>{
+    const storedTasks = getTasksFromLocalStorage();
+    setTasks(storedTasks);
+  }, [])
+  const onRenderCell = (task: any) => {
     return (
       <Stack horizontal key={task.id} className={TaskListStyle.taskItem}>
         <Stack horizontal style={{width: "90%"}}>

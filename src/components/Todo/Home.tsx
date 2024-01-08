@@ -6,7 +6,6 @@ import { PivotKeysEnum } from "./Types";
 import TaskList from "./List/TaskList";
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
 import AddTask from "./AddTask/AddTask";
-import { LocalTasksFromLocalStorage, saveTasksFromLocalStorage } from "./LocalStorageUtil";
 import CompletedTask from "./Completed/CompletedTask";
 initializeIcons();
 
@@ -15,11 +14,7 @@ const Home = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedKey, setSelectedKey] = useState<string>(PivotKeysEnum.Tasks);
 
-  useEffect(() => {
-    //Load tasks from local storage
-    const storedTasks = LocalTasksFromLocalStorage();
-    setTasks(storedTasks);
-  }, []);
+
   return (
     <Stack className={HomeStyle.todoContainer}>
       <header className={HomeStyle.headerStyle}>
@@ -45,7 +40,7 @@ const Home = () => {
             itemKey={PivotKeysEnum.Tasks}
           >
             {/* Pass the tasks as a prop to TaskList */}
-            <TaskList tasks={tasks} />
+            <TaskList />
           </PivotItem>
           <PivotItem
             headerText={TodoString.pivots.taskFormTab}
