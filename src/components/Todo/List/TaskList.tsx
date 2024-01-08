@@ -1,6 +1,6 @@
 import React from "react";
 import TaskListStyle from "./TaskList.style";
-import { Checkbox } from "@fluentui/react";
+import { Checkbox, FontIcon, Stack, mergeStyles } from "@fluentui/react";
 
 interface ITask {
   id: string;
@@ -19,10 +19,19 @@ const TaskList = () => {
   ];
   const onRenderCell = (task: ITask) => {
     return (
-      <div key={task.id} className={TaskListStyle.taskItem}>
-        <Checkbox />
-        {task.title}
-      </div>
+      <Stack horizontal key={task.id} className={TaskListStyle.taskItem}>
+        <Stack horizontal style={{width: "90%"}}>
+            <Checkbox />
+            {task.title}
+        </Stack>
+
+        <Stack horizontal style={{width: "10%"}}>
+            <FontIcon iconName="info" className={TaskListStyle.iconStyle} />
+            <FontIcon iconName="EditNote" className={TaskListStyle.iconStyle} />
+            <FontIcon iconName="Delete" className={TaskListStyle.iconStyle} />
+        </Stack>
+
+      </Stack>
     );
   };
   return <div>{tasks.map(onRenderCell)}</div>;

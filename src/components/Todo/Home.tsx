@@ -4,6 +4,9 @@ import TodoString from "./string.json";
 import { Label, Pivot, PivotItem, Stack } from "@fluentui/react";
 import { PivotKeysEnum } from "./Types";
 import TaskList from "./List/TaskList";
+import { initializeIcons } from '@fluentui/font-icons-mdl2';
+import AddTask from "./AddTask/AddTask";
+initializeIcons();
 
 const Home = () => {
   //State for Pivot
@@ -39,7 +42,7 @@ const Home = () => {
             headerText={TodoString.pivots.taskFormTab}
             itemKey={PivotKeysEnum.TaskForm}
           >
-            <Label>Pivot #2</Label>
+            <AddTask />
           </PivotItem>
           <PivotItem
             headerText={TodoString.pivots.CompletedTab}
