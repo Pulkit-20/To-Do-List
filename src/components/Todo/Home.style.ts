@@ -1,10 +1,10 @@
-import { IProcessedStyleSet, IStyle, mergeStyleSets } from "@fluentui/react";
+import { IProcessedStyleSet, IStyle, IStyleFunction, mergeStyleSets } from "@fluentui/react";
 
 interface IHomeStyle {
     todoContainer : IStyle;
     headerStyle : IStyle;
     pivotRoot: IStyle;
-    lineIsSelected: IStyle;
+    pivotContainer: IStyle;
 }
 
 const HomeStyle: IProcessedStyleSet<IHomeStyle> = mergeStyleSets({
@@ -29,8 +29,9 @@ const HomeStyle: IProcessedStyleSet<IHomeStyle> = mergeStyleSets({
         display: "flex",
         justifyContent: "center"
     },
-    lineIsSelected: {
-        color: "cadetBlue"
+    pivotContainer: {
+    margin: 20,
+    
     }
 })
 
