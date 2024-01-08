@@ -18,7 +18,7 @@ const Home = () => {
   useEffect(() => {
     const storedTasks = getTasksFromLocalStorage();
     setTasks(storedTasks); 
-  })
+  }, []);
 
   return (
     <Stack className={HomeStyle.todoContainer}>

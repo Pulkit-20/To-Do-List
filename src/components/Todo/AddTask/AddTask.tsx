@@ -6,9 +6,9 @@ import {
   TextField,
 } from "@fluentui/react";
 import React, { useState } from "react";
-import { saveTasksToLocalStorage } from "../LocalStorageUtil";
+import { ITask, getTasksFromLocalStorage, saveTasksToLocalStorage } from "../LocalStorageUtil";
 
-const AddTask = () => {
+const AddTask: React.FC = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
@@ -17,12 +17,20 @@ const AddTask = () => {
     const handleAddTask = () =>{
         if(title.trim() !== ""){
             setShowErrorMessage(false);
+            setShowSuccessMessage(true);
+            
+            const existingTasks = getTasksFromLocalStorage();
+            const newTask: ITask ={
+                id: String(Date.now()),
+                title,
+                description,
+            }
+            const updatedTask= [...existingTasks, newTask]
+            //Saving to Local Storage
+            saveTasksToLocalStorage(updatedTask);
+            
             setTitle("");
             setDescription("");
-            setShowSuccessMessage(true);
-
-            //Saving to Local Storage
-            saveTasksToLocalStorage({ title, description });
 
             setTimeout(() => {
                 setShowSuccessMessage(false);
