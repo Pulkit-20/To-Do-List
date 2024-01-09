@@ -45,7 +45,7 @@ const Home = () => {
             itemKey={PivotKeysEnum.Tasks}
           >
             {/* Pass the tasks as a prop to TaskList */}
-            <TaskList tasks={tasks} />
+            <TaskList tasks={tasks} setTasks={setTasks} />
           </PivotItem>
           <PivotItem
             headerText={TodoString.pivots.taskFormTab}

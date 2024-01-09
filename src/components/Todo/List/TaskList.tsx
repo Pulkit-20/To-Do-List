@@ -5,14 +5,15 @@ import { ITask, getTasksFromLocalStorage } from "../LocalStorageUtil";
 
 interface TaskListProps {
   tasks: ITask[];
-
+  setTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
 }
-const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
+const TaskList: React.FC<TaskListProps> = ({ tasks, setTasks }) => {
   const handleCheckboxChange = (index: number ) => {
-    console.log(index);
-    tasks[index].checked = true; 
+    tasks[index].checked = true;
+    setTasks(tasks);
   }
   const onRenderCell = (task: ITask, index: number) => {
+    console.log(index);
     return task.checked !== true ?(
         <Stack horizontal key={task.id} className={TaskListStyle.taskItem}>
           <Stack horizontal style={{width: "90%"}}>
