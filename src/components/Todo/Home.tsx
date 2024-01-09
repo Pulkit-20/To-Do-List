@@ -14,7 +14,7 @@ const Home = () => {
   //State for Pivot and task
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [selectedKey, setSelectedKey] = useState<string>(PivotKeysEnum.Tasks);
-
+  const [taskToEdit, setTaskToEdit] = useState<ITask | null>(null);
   useEffect(() => {
     const storedTasks = getTasksFromLocalStorage();
     setTasks(storedTasks); 
@@ -45,19 +45,19 @@ const Home = () => {
             itemKey={PivotKeysEnum.Tasks}
           >
             {/* Pass the tasks as a prop to TaskList */}
-            <TaskList tasks={tasks} setTasks={setTasks} />
+            <TaskList tasks={tasks} setTasks={setTasks} setSelectedKey={setSelectedKey} setTaskToEdit={setTaskToEdit} />
           </PivotItem>
           <PivotItem
             headerText={TodoString.pivots.taskFormTab}
             itemKey={PivotKeysEnum.TaskForm}
           >
-            <AddTask tasks={tasks} setTasks={setTasks} setSelectedKey={setSelectedKey} />
+            <AddTask tasks={tasks} setTasks={setTasks} setSelectedKey={setSelectedKey} taskToEdit={taskToEdit} setTaskToEdit={setTaskToEdit} />
           </PivotItem>
           <PivotItem
             headerText={TodoString.pivots.CompletedTab}
             itemKey={PivotKeysEnum.Completed}
           >
-            <CompletedTask tasks={tasks} setTasks={setTasks} />
+            <CompletedTask tasks={tasks} setTasks={setTasks}  setSelectedKey={setSelectedKey} setTaskToEdit={setTaskToEdit} />
           </PivotItem>
         </Pivot>
       </Stack>
