@@ -57,7 +57,7 @@ const Home = () => {
             headerText={TodoString.pivots.CompletedTab}
             itemKey={PivotKeysEnum.Completed}
           >
-            <CompletedTask />
+            <CompletedTask tasks={tasks} setTasks={setTasks} />
           </PivotItem>
         </Pivot>
       </Stack>
