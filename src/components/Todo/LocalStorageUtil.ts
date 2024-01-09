@@ -2,6 +2,7 @@ export interface ITask {
     id: string;
     title: string;
     description: string;
+    checked: boolean;
 }
 export const getTasksFromLocalStorage = (): ITask[] => {
     const storedTasks = localStorage.getItem("tasks");

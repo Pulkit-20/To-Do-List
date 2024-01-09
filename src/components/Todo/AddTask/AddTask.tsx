@@ -1,14 +1,21 @@
 import {
   MessageBar,
   MessageBarType,
+  Pivot,
   PrimaryButton,
   Stack,
   TextField,
 } from "@fluentui/react";
 import React, { useState } from "react";
 import { ITask, getTasksFromLocalStorage, saveTasksToLocalStorage } from "../LocalStorageUtil";
+import { PivotKeysEnum } from "../Types";
 
-const AddTask: React.FC = () => {
+interface AddTaskProps {
+    tasks: ITask[];
+    setTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
+    setSelectedKey: React.Dispatch<React.SetStateAction<string>>;
+}
+const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks, setSelectedKey}) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
@@ -18,23 +25,26 @@ const AddTask: React.FC = () => {
         if(title.trim() !== ""){
             setShowErrorMessage(false);
             setShowSuccessMessage(true);
-            
-            const existingTasks = getTasksFromLocalStorage();
+            const checked = false;
             const newTask: ITask ={
                 id: String(Date.now()),
                 title,
                 description,
+                checked,
             }
-            const updatedTask= [...existingTasks, newTask]
+            const updatedTask= [...tasks, newTask]
             //Saving to Local Storage
             saveTasksToLocalStorage(updatedTask);
-            
+
+            setTasks(updatedTask);
+
             setTitle("");
             setDescription("");
 
             setTimeout(() => {
                 setShowSuccessMessage(false);
-            }, 3000);
+                setSelectedKey(PivotKeysEnum.Tasks);
+            }, 2000);
         }
         else{
             setShowSuccessMessage(false);
@@ -56,7 +66,7 @@ const AddTask: React.FC = () => {
                 {showSuccessMessage && (
                     <Stack style={{width: "80%"}}>
                     <MessageBar messageBarType={MessageBarType.success}>
-                        Task Added
+                        Task Added, Opening Tasks Tab
                     </MessageBar>
                     </Stack>
                 )}
