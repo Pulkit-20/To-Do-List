@@ -8,11 +8,15 @@ interface TaskListProps {
 
 }
 const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
-  const onRenderCell = (task: ITask) => {
+  const handleCheckboxChange = (index: number ) => {
+    console.log(index);
+    tasks[index].checked = true; 
+  }
+  const onRenderCell = (task: ITask, index: number) => {
     return task.checked !== true ?(
         <Stack horizontal key={task.id} className={TaskListStyle.taskItem}>
           <Stack horizontal style={{width: "90%"}}>
-              <Checkbox checked={task.checked || false} />
+              <Checkbox onChange={() => handleCheckboxChange(index)} />
               {task.title}
           </Stack>
 
